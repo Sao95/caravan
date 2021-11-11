@@ -1,4 +1,11 @@
 <h1>新規投稿</h1>
+<% if @blog.errors.any? %> <!--errors:モデルにバリデーションをかけた際、発生したエラーの内容を確認できるメソッド（any?と組み合わせる→エラーが発生しているかどうかを判定）-->
+  <%= @blog.errors.count %>件のエラーが発生しました
+  <% @blog.errors.full_messages.each do |message| %> <!--エラー文は配列で保存されているため、eachを使用-->
+    <%= message %>
+  <% end %>
+<% end %>
+
 <!-- form_with部分 -->
 <%= form_with model:@blog, local:true do |f| %>
 
